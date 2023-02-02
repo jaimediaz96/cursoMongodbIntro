@@ -1,0 +1,30 @@
+use('store')
+
+db.products.drop() //elimina o vacia la coleccion
+
+db.products.insertMany([
+    {
+        _id: 1,
+        name: "Product 1",
+        price: 10000
+    },
+    {
+        _id: 2,
+        name: "Product 2",
+        price: 10200
+    },
+    {
+        _id: 3,
+        name: "Product 3",
+        price: 30000
+    },
+    {
+        _id: 4,
+        name: "Product 4",
+        price: 14400
+    }
+], {// si hay un error de duplicidad en las llaves me insertara los productos solo hasta donde se genere el error los otros no los inserta
+    ordered: false// con esto hacemos que inserte todos menos los que tienen error
+})
+
+db.products.find()//ejecuta todo pero solo muestra en patalla la ultima instruccion

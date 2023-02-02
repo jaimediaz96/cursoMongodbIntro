@@ -1,0 +1,12 @@
+use('store') //Si la base de datos no exite esta seta creada
+// si la coleccion no existe esta sera creada
+db.products.insertOne({ 
+    _id: 1,
+    name: "Product 1",
+    price: 10000
+})
+db.products.insertOne({ 
+    _id: 1,
+    name: "Product 2",
+    price: 20000
+})
