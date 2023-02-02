@@ -1,0 +1,73 @@
+// el objetivo es insertar un solo registro por dia, pero actulizar las lecturas cada que estas ocurrarn
+use("store")
+
+/*
+// database
+db.iot.drop()
+
+db.iot.insertMany([
+  { _id: 1, sensor: "A001", date: "2022-01-01", readings: [1,2,3,4] },
+  { _id: 2, sensor: "A001", date: "2022-01-02", readings: [1,2,3,4] },
+  { _id: 3, sensor: "A002", date: "2022-01-01", readings: [1,2,3,4] },
+  { _id: 4, sensor: "A002", date: "2022-01-02", readings: [1,2,3,4] },
+])
+*/
+
+/*
+// insertar
+db.iot.insertOne({
+    sensor: "A001",
+    date: "2023-02-02",
+    readings: [1212]
+})
+*/
+
+/*
+// actualizar
+db.iot.updateOne({
+    sensor: "A001",
+    date: "2023-02-02"
+}, {
+    $push: {
+        readings: [2323]
+    } // lo actualice mal debido a que no agregue un valor nuevo, sino que, agregue un array nuevo
+})
+*/
+
+/*
+// borrar ultimo dato del array
+db.iot.updateOne({
+    sensor: "A001",
+    date: "2023-02-02"
+}, {
+    $pop: {
+        readings: 1
+    } // elimina, 1 el ultimo valor, -1 el primer valor
+})
+*/
+
+/*
+// actualizar
+db.iot.updateOne({
+    sensor: "A001",
+    date: "2023-02-02"
+}, {
+    $push: {
+        readings: 2323
+    }
+})
+*/
+
+// upset, insertar y actualizar
+db.iot.updateOne({
+    sensor: "A001",
+    date: "2023-02-03",
+}, {
+    $push: {
+        readings: 2
+    }
+}, {
+    upsert: true
+})
+
+db.iot.find()
