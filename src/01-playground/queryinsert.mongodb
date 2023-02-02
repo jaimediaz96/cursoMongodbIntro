@@ -1,0 +1,6 @@
+use('store')
+
+db.products.insert({
+    name: "Product1",
+    price: 12000
+})
