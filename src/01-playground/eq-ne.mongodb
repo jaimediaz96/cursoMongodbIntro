@@ -1,0 +1,35 @@
+use("store")
+
+/*
+// dataset
+db.inventory.drop()
+
+db.inventory.insertMany([
+  { _id: 1, item: { name: "ab", code: "123" }, qty: 15, tags: ["A", "B", "C"] },
+  { _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: ["B"] },
+  { _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: ["A", "B"] },
+  { _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: ["B", "A"] },
+  { _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [["A", "B"], "C"] },
+])
+*/
+
+// eq, equals
+//db.inventory.find({ qty: 20 }) // eq implicito
+//db.inventory.find({ qty: { $eq: 20 } }) // eq explicito
+//db.inventory.find({ "item.name": "ab" }) // Buscando en un subobjeto
+//db.inventory.find({ "item.code": "123" })
+
+//ne, no equals
+//db.inventory.find({ qty: { $ne: 20 } }) // ne explicito, siempre es explicito
+//db.inventory.find({ "item.name": { $ne: "ab" } })
+
+db.inventory.updateMany(
+    { qty: { $ne: 20 } },
+    {
+        $inc: {
+            qty: 10
+        }
+    }
+)
+
+db.inventory.find()
