@@ -1,0 +1,30 @@
+use("store")
+
+// gt(>) & gte(>=), mayor que y mayor o igual que
+//db.inventory.find({ qty: { $gt: 20 } })
+//db.inventory.find({ qty: { $gte: 20 } })
+
+//lt(<) & lte(<=), menor que y menor o igaul que
+//db.inventory.find({ qty: { $lt: 20 } })
+//db.inventory.find({ qty: { $lte: 20 } })
+
+/*
+//join
+//db.inventory.find({ qty: { $gt: 10, $lt: 40 } })
+db.inventory.find({
+    "item.name": "ab",
+    "item.code": { $ne: "123" },
+    qty: { $gt: 10, $lt: 40 }
+})
+*/
+
+db.iot.updateMany(
+    { sensor: "A001" },
+    {
+        $pull: {
+            readings: { $gte: 3 }
+        }
+    }
+)
+
+db.iot.find()
