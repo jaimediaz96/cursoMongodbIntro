@@ -1,0 +1,32 @@
+use('store')
+
+/*
+// agregar un nuevo valor en un array
+db.inventory.updateOne({ _id: 4 }, {
+    $push: {
+        tags: "headphone"
+    }
+})
+*/
+
+/*
+// quitar un valor en un array
+db.inventory.updateMany({}, {// al dejar el query vacio le indico que lo intente en toda la coleccion
+    $pull: {
+        tags: "book"
+    }
+})
+*/
+
+/*
+// quitar varios valores en un array
+db.inventory.updateMany({}, {// al dejar el query vacio le indico que lo intente en toda la coleccion
+    $pull: {
+        tags: {
+            $in: [ "appliance", "school" ]
+        }
+    }
+})
+*/
+
+db.inventory.find()
