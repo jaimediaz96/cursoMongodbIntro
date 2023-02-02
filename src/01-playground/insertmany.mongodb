@@ -22,6 +22,10 @@ db.products.insertMany([
         _id: 4,
         name: "Product 4",
         price: 14400
+    },
+    {
+        name: "Product 5",
+        price: 400
     }
 ], {// si hay un error de duplicidad en las llaves me insertara los productos solo hasta donde se genere el error los otros no los inserta
     ordered: false// con esto hacemos que inserte todos menos los que tienen error

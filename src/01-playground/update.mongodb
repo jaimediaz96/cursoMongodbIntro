@@ -1,0 +1,41 @@
+use('store')
+
+//set
+db.products.updateOne(
+    //query
+    {_id: 3},
+    //change => operators
+    { 
+        $set: {
+            name: 'Change name',
+            price: 100,
+            tags: ['A', 'B', 'C']
+        }
+    }
+)
+
+//inc
+db.products.updateOne(
+    //query
+    {_id: 2},
+    //change => operators
+    { 
+        $inc: {
+            price: 100
+        }
+    }
+)
+
+//Obj
+db.products.updateOne(
+    //query
+    {_id: ObjectId("63dc27f15b5cc65793d4f974")},
+    //change => operators
+    { 
+        $inc: {
+            price: 20
+        }
+    }
+)
+
+db.products.find()
