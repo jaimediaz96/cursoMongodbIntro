@@ -1,0 +1,9 @@
+use('sample_training') //Conentarse a la base de datos sample-training
+
+db.zips.find({ state: 'NY'}).count()
+/*
+    db:     Palabra clave
+    zips:   Coleccion a la cual nos queremos conectar (se llama zips la coleccion)
+    find({ state: 'NY'}):   Busca todos los que tengan estado NY
+    .count():   Cuenta cuantos hay
+*/
