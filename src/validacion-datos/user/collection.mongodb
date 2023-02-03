@@ -1,0 +1,37 @@
+use("store")
+
+db.createCollection('user', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['email', 'password', 'role'], // elementos obligatorios que debe de tener la coleccion
+            additionalProperties: false, // Este parametro simepre viene en true por default, al agregar esta linea en false le indicamos que esta coleccion solo debe de tener los atributos aqui mencionados, es decir, tendra los atributos obligatorios mencionados en el required y tendra de manera opcional los demas atributos que esten en properties, pero no tendra ningun otro atributo fuera de estos, al coloca la propiedad additionalProperties en false, también se debe agregar obligatoriamente la propiedad _id en el array de required y además validarlo en properties. De lo contrario Mongo no permitirá la inserción de documentos, así tengan la estructura correcta. _id: { bsonType: 'objectId' }
+            properties: {
+                name: {
+                    bsonType: 'string' // Se restringe a que el atributo name solo puede recivir un string
+                },
+                last_name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string'
+                },
+                password: {
+                    bsonType: 'string',
+                    pattern: "^[A-Za-z0-9]{8,}$" // Se restringe a que el atributo password solo puede resivir un string y este string debe de tener caracteres de A-Za-z0-9 (no se le permiten caracters especiales) y este debe de tener un minimo de 8 caracteres({8}) y un maximo de infinito({ }), ^ -> indica inicio $ -> indica fin
+                },
+                age: {
+                    bsonType: 'number', // Se restringe a que el atributo age solo puede resivir un valor numerico
+                    minimum: 18, // y dicho valor tiene que ser superior a 18
+                    maximum: 99 // y tiene que ser menor que 99
+                },
+                issingle: {
+                    bsonType: 'bool' // Se restringe a que el atributo issingle solo puede resivir un valor boleano
+                },
+                role: {
+                    enum: ['customer', 'seller', 'admin'] // Se restringe a que el atributo role solo puede resivir un string, pero no cualquier string si no uno de estos 'customer', 'seller', 'admin'
+                }
+            }
+        }
+    }
+})

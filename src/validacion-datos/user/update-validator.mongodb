@@ -1,0 +1,40 @@
+use("store")
+
+db.getCollectionInfos() // Me permite ver todas las validaciones que tengan todas las colecciones de la base de datos a la cual estoy conectado
+
+db.runCommand({
+    collMod: 'user', // me permite reescribir las validaciones sin tener que borrar la coleccion pero para poder hacer esto se debem de tener los permisos de usuario en mongo atlas
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['email', 'password', 'role'],
+            additionalProperties: true,
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                last_name: {
+                    bsonType: 'string'
+                },
+                email: {
+                    bsonType: 'string'
+                },
+                password: {
+                    bsonType: 'string',
+                    pattern: "^[A-Za-z0-9]{8,}$"
+                },
+                age: {
+                    bsonType: 'number',
+                    minimum: 18,
+                    maximum: 99
+                },
+                issingle: {
+                    bsonType: 'bool'
+                },
+                role: {
+                    enum: ['customer', 'seller', 'admin']
+                }
+            }
+        }
+    }
+})

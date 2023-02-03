@@ -1,0 +1,9 @@
+use("store")
+
+db.user.insertOne({
+    name: "Jaime",
+    last_name: "Diaz",
+    email: "jedt1996@gmail.com",
+    password: "1234567A",
+    social_acaunt: "face"
+})

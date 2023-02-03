@@ -1,0 +1,35 @@
+use("store")
+
+db.createCollection('products', {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: ['name'],
+            properties: {
+                name: {
+                    bsonType: 'string'
+                },
+                sizes: {
+                    bsonType: 'array', // Se restringe a que el atributo size solo puede resivir un array
+                    minItems: 1, // El array como minimo debe de tener 1 valor no debe de estar vacio
+                    uniqueItems: true, // Que cada elemento del array sea unico (No permite elementos duplicados)
+                    items: {
+                        bsonType: 'string' // y dicho array solo puede contener strings
+                    }
+                },
+                category: {
+                    bsonType: 'object', // Se restringe a que el atributo category solo puede resivir un documento y este se empiza a anidar de la misma forma como lo hemos venido haciendo
+                    required: ['image'],
+                    properties: {
+                        name: {
+                            bsonType: 'string'
+                        },
+                        image: {
+                            bsonType: 'string'
+                        }                        
+                    }
+                }
+            }
+        }
+    }
+})
