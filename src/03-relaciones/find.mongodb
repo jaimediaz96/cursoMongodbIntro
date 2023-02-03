@@ -18,7 +18,7 @@ También se pueden usar combinados, si usas el ObjectId, para referenciar el tot
 
 En las relaciones 1 a N se embebidas lo que se hace es generar un arreglo de los objetos a enbeber, Embeber REVIEWS o COMENTARIOS de cierto producto es un ejemplo de dónde NO usar este método, porque puede crecer demasiado y reducir el rendimiento de la consulta o exceder los 16 mb de limite.
 
-En las relaciones N a N se realiza de la misma forma generando un arreglo de documentos 
+En las relaciones N a N se realiza de la misma forma generando un arreglo de documentos (objetos) y esta tienen que ser referenciadas
 */
 
 use("store")
