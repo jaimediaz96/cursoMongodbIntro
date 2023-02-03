@@ -1,0 +1,58 @@
+/*
+Relaciones
+
+Enbeber: dentro del mismo documento
+Referenciar o enlazar(link): dsando el ObjectId de otra colección
+Un método para identificar cuál opción usar nos hacemos la siguiente pregunta:
+
+¿Qué tan frecuente es CONSULTADA la información?
+¿Qué tan frecuente es ACTUALIZADA la información?
+¿La información se consulta en CONJUNTO o POR PARTES?
+Si se consulta en conjunto se recomienda EMBEBIDA
+Si se consulta por partes se recomienda REFERENCIADA
+
+En el 90% de los casos, cuando hay una relacion 1:1, esta suele estar EMBEBIDA.
+PERO: Uno de los casos donde se usa la relación REFERENCIADA, es cuando el documento ya es muy grande, cerca del límite de 16 mb y mejor se saca información para mejorar el rendimiento.
+
+También se pueden usar combinados, si usas el ObjectId, para referenciar el total de datos y agregar los 2 o 3 campos de los más comunes que se usan juntas para evitar la consulta a la 2da colección.
+
+En las relaciones 1 a N se embebidas lo que se hace es generar un arreglo de los objetos a enbeber, Embeber REVIEWS o COMENTARIOS de cierto producto es un ejemplo de dónde NO usar este método, porque puede crecer demasiado y reducir el rendimiento de la consulta o exceder los 16 mb de limite.
+
+En las relaciones N a N se realiza de la misma forma generando un arreglo de documentos 
+*/
+
+use("store")
+
+/*
+db.store.findOne({ storeId: 'ST001' })
+db.store_details.findOne({ storeId: 'ST001' })
+
+db.store.aggregate([
+    {
+        $lookup: { // Me permite enlazar las dos consultas
+          from: 'store_details', // me pregunta hacia donde voy a hacer la consulta
+          localField: 'storeId', // Cual es el campo que los une en la coleccion local que es desde donde la estoy llamando (store)
+          foreignField: 'storeId', // Cual es el campo que los une en la coleccion externa que es la que estoy llamando en from (store_detail)
+          as: 'detail' // Donde va a dejar la union (join)
+        }
+    }
+])
+*/
+
+
+// 1 N referenciada
+db.orders.aggregate([
+    {
+        $match: { // Me hara la referencia pero solo me treara esta orden en especifico y no todas
+            _id: ObjectId('63dd782198157992725c1009')
+        }
+    },
+    {
+        $lookup: {
+          from: 'user',
+          localField: 'user_id',
+          foreignField: '_id',
+          as: 'user'
+        }
+    }
+])

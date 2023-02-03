@@ -1,0 +1,39 @@
+use("store")
+
+/*
+db.store.insertOne({
+    storeId: "ST001",
+    name: "Jaime Store",
+    address: "Cll 21 21"
+})
+
+db.store_details.insertOne({
+    storeId: "ST001",
+    description: "text text text",
+    manager: {
+        email: "jaime@gmail.com",
+        cellphone: "3213213434"
+    }
+})
+*/
+
+/*
+// En las relaciones 1 a N se embebidas lo que se hace es generar un arreglo de los objetos a enbeber si es referenciada seria referenciando por un atributo en este caso el Id
+db.orders.insertOne({
+    user_id: ObjectId('63dd719dc3ae2938544d22d1'),
+    date: "2023-02-02",
+    address: "Cll 21 23",
+    items: [
+        {
+            name: 'Camiseta',
+            price: 120,
+            qty: 1
+        },
+        {
+            name: 'Pantalon',
+            price: 200,
+            qty: 2
+        }
+    ]
+})
+*/
