@@ -5,5 +5,5 @@ db.trips.find(
     { tripduration: { $gte: 500 } },
     // projection
     // me permite traer unicamente los campos que quiera
-    { tripduration: 1, usertype: 1 }
-)
+    { tripduration: 1, usertype: 1 } // incluye con 1, excluye con 0
+) // no es necesario excluir los demas datos, si lo haces dara error, el unico que se puede excluir es el id 
